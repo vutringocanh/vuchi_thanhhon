@@ -1,92 +1,71 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Get modal elements
-    const giftModal = document.getElementById('giftModal');
-    const rsvpModal = document.getElementById('rsvpModal');
-    const giftBtn = document.getElementById('giftBtn');
-    const rsvpBtn = document.getElementById('rsvpBtn');
-    const closeButtons = document.querySelectorAll('.close-btn');
+document.addEventListener("DOMContentLoaded", function () {
+  // Mở modal RSVP
+  document.getElementById("rsvpBtn").addEventListener("click", function () {
+    document.getElementById("rsvpModal").style.display = "block";
+  });
 
-    // Open Gift Modal
-    giftBtn.addEventListener('click', function () {
-        giftModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+  // Mở modal gift
+  document.getElementById("giftBtn").addEventListener("click", function () {
+    document.getElementById("giftModal").style.display = "block";
+  });
+
+  // Đóng modal khi bấm nút X
+  document.querySelectorAll(".close-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      this.closest(".modal").style.display = "none";
     });
+  });
 
-    // Open RSVP Modal
-    rsvpBtn.addEventListener('click', function () {
-        rsvpModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+  // Đóng modal khi bấm ra ngoài
+  window.addEventListener("click", function (e) {
+    document.querySelectorAll(".modal").forEach(modal => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
     });
+  });
 
-    // Close Modals (both gift and rsvp)
-    closeButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            giftModal.style.display = 'none';
-            rsvpModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-    });
+  // Gửi form xác nhận RSVP
+  document.querySelector(".rsvp-form").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    // Close modal when clicking outside content
-    window.addEventListener('click', function (event) {
-        if (event.target === giftModal || event.target === rsvpModal) {
-            giftModal.style.display = 'none';
-            rsvpModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const guests = document.getElementById("guests").value;
+    const event = document.getElementById("event").value;
+
+    if (!name) {
+      alert("Vui lòng nhập họ tên.");
+      return;
+    }
+
+    const data = {
+      name,
+      phone,
+      guests,
+      event
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbxszqBmtSB7NU0VFYnbBmZeBAZqwxibXf66mbFOqdeGAoKBjgWdTHVi7_2LHdK3gr9i/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(response => {
+        if (response.status === "success") {
+          alert("Cảm ơn bạn đã xác nhận tham dự!");
+          document.querySelector(".rsvp-form").reset();
+          document.getElementById("rsvpModal").style.display = "none";
+        } else {
+          alert("Gửi không thành công. Vui lòng thử lại sau.");
         }
-    });
-
-    // Handle Wish Form Submit
-    const wishForm = document.querySelector('.wish-form');
-    if (wishForm) {
-        wishForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Cảm ơn bạn đã gửi lời chúc mừng!');
-            giftModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            wishForm.reset();
-        });
-    }
-
-    // Handle RSVP Form Submit and send to Google Sheets
-    const rsvpForm = document.querySelector('.rsvp-form');
-    if (rsvpForm) {
-        rsvpForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const guests = document.getElementById('guests').value;
-            const event = document.getElementById('event').value;
-
-            if (!name) {
-                alert("Vui lòng nhập họ và tên.");
-                return;
-            }
-
-            const data = {
-                name: name,
-                phone: phone,
-                guests: guests,
-                event: event
-            };
-
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxszqBmtSB7NU0VFYnbBmZeBAZqwxibXf66mbFOqdeGAoKBjgWdTHVi7_2LHdK3gr9iHg/exec";
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new URLSearchParams(data)
-            })
-            .then(response => {
-                alert("Đã gửi xác nhận thành công!");
-                rsvpModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                rsvpForm.reset();
-            })
-            .catch(error => {
-                alert("Đã xảy ra lỗi khi gửi xác nhận. Vui lòng thử lại sau.");
-                console.error("Error:", error);
-            });
-        });
-    }
+      })
+      .catch(error => {
+        console.error("Lỗi:", error);
+        alert("Đã xảy ra lỗi khi gửi xác nhận.");
+      });
+  });
 });
