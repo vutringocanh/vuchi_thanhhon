@@ -215,13 +215,13 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-flex;
+    /* display: inline-flex; */
     align-items: center;
     box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
 }
 
 .gift-button i {
-    margin-right: 8px;
+    /* margin-right: 8px; */
 }
 
 .gift-button:hover {
@@ -478,7 +478,7 @@ body {
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .couple-names-main {
-        font-size: 20px;
+        font-size: 25px;
     }
     
     .photo-frame {
@@ -518,4 +518,142 @@ body {
     font-size: 12px;
     color: #666;
     text-transform: uppercase;
+}
+
+
+/* Floating Hearts Animation */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.heart-particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e75480"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+  background-size: contain;
+  opacity: 0;
+}
+
+/* Additional Flower Positions */
+.flower-decoration.middle-left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%) rotate(-10deg);
+  width: 50px;
+  height: 50px;
+  background-image: url('https://cdn.pixabay.com/photo/2017/01/31/23/42/decorative-2028039_960_720.png');
+}
+
+.flower-decoration.middle-right {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(10deg);
+  width: 50px;
+  height: 50px;
+  background-image: url('https://cdn.pixabay.com/photo/2017/01/31/23/42/decorative-2028039_960_720.png');
+}
+
+/* Animation for flowers */
+.flower-decoration {
+  animation: float 6s ease-in-out infinite;
+}
+
+.flower-decoration.top-left {
+  animation-delay: 0s;
+}
+
+.flower-decoration.top-right {
+  animation-delay: 1s;
+}
+
+.flower-decoration.bottom-left {
+  animation-delay: 2s;
+}
+
+.flower-decoration.bottom-right {
+  animation-delay: 3s;
+}
+
+.flower-decoration.middle-left {
+  animation-delay: 0.5s;
+}
+
+.flower-decoration.middle-right {
+  animation-delay: 1.5s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+
+.floating-gift {
+    position: fixed;
+    top: 50%;
+    right: 0%;
+    z-index: 999;
+    animation: bounce 2s infinite;
+    touch-action: none; /* Cho phép di chuyển bằng cảm ứng */
+    user-select: none; /* Ngăn chọn văn bản khi kéo */
+    cursor: grab;
+}
+
+.floating-gift:active {
+    cursor: grabbing;
+}
+/* Floating Gift Button */
+.floating-gift {
+    position: fixed;
+    top: 50%;
+    right: 0%;
+    z-index: 999;
+    animation: bounce 2s infinite;
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+}
+
+.gift-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.gift-image {
+    width: 50px; /* Điều chỉnh kích thước theo ý muốn */
+    height: 50px;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.gift-image:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Animation bounce giữ nguyên */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* Style khi đang di chuyển */
+.floating-gift:active {
+    cursor: grabbing;
+}
+
+.floating-gift:active .gift-image {
+    transform: scale(0.95);
 }

@@ -204,3 +204,141 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownTimer = setInterval(updateCountdown, 1000);
     updateCountdown(); // Initial call
 });
+// Floating Hearts Animation
+function createFloatingHearts() {
+  const container = document.querySelector('.floating-hearts');
+  
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-particle');
+    
+    // Random position
+    const posX = Math.random() * window.innerWidth;
+    const posY = Math.random() * window.innerHeight;
+    
+    // Random size
+    const size = Math.random() * 15 + 10;
+    
+    // Random animation duration
+    const duration = Math.random() * 15 + 10;
+    
+    // Random delay
+    const delay = Math.random() * 5;
+    
+    heart.style.left = `${posX}px`;
+    heart.style.top = `${posY}px`;
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.animation = `floatUp ${duration}s linear ${delay}s infinite`;
+    
+    container.appendChild(heart);
+    
+    // Remove heart after animation completes
+    setTimeout(() => {
+      heart.remove();
+    }, (duration + delay) * 1000);
+  }
+  
+  // Create initial hearts
+  for (let i = 0; i < 15; i++) {
+    createHeart();
+  }
+  
+  // Create new hearts periodically
+  setInterval(createHeart, 1000);
+}
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+  // ... existing code ...
+  
+  // Add floating hearts animation
+  createFloatingHearts();
+  
+  // Add keyframe animation for hearts
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
+
+
+// Giữ nguyên toàn bộ code xử lý kéo thả như trước
+document.addEventListener('DOMContentLoaded', function() {
+    const floatingGift = document.getElementById('floatingGift');
+    let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
+    let isDragging = false;
+
+    // Xử lý cảm ứng
+    floatingGift.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        const touch = e.touches[0];
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+        e.preventDefault();
+    });
+
+    floatingGift.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        
+        const deltaX = touch.clientX - mouseX;
+        const deltaY = touch.clientY - mouseY;
+        
+        posX += deltaX;
+        posY += deltaY;
+        
+        floatingGift.style.transform = `translate(${posX}px, ${posY}px)`;
+        
+        mouseX = touch.clientX;
+        mouseY = touch.clientY;
+        e.preventDefault();
+    });
+
+    floatingGift.addEventListener('touchend', function() {
+        isDragging = false;
+    });
+
+    // Xử lý chuột (tùy chọn)
+    floatingGift.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        
+        const deltaX = e.clientX - mouseX;
+        const deltaY = e.clientY - mouseY;
+        
+        posX += deltaX;
+        posY += deltaY;
+        
+        floatingGift.style.transform = `translate(${posX}px, ${posY}px)`;
+        
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    document.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+});

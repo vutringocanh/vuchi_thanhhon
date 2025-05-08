@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Kết Quả Đám Cưới Vũ Chi & Nguyễn Huy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .header {
+            background-color: #e75480;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #e75480;
+            color: white;
+            font-weight: bold;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .badge {
+            font-size: 0.9em;
+        }
+        .wish-message {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    
+    
+    <div class="header">
+        <h1><i class="fas fa-heart"></i> Quản Lý Đám Cưới Vũ Chi & Nguyễn Huy</h1>
+        <p class="mb-0">Danh sách lời chúc và xác nhận tham dự</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-comment-alt"></i> Lời Chúc Mừng</span>
+                        <span class="badge bg-light text-dark" id="wish-count">0</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="wishes-table">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Lời Chúc</th>
+                                        <th>Thời Gian</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="wishes-body">
+                                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-user-check"></i> Xác Nhận Tham Dự</span>
+                        <span class="badge bg-light text-dark" id="rsvp-count">0</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="rsvps-table">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên</th>
+                                        <th>SĐT</th>
+                                        <th>Số Người</th>
+                                        <th>Sự Kiện</th>
+                                        <th>Thời Gian</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rsvps-body">
+                                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Admin Script -->
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqiAvYD_7f1BfVOhq1m7KIb_U_hYP7NzA",
+            authDomain: "vutringocanh.firebaseapp.com",
+            databaseURL: "https://vutringocanh-default-rtdb.firebaseio.com",
+            projectId: "vutringocanh",
+            storageBucket: "vutringocanh.firebasestorage.app",
+            messagingSenderId: "905602873917",
+            appId: "1:905602873917:web:9f381692f54d1b4d444854",
+            measurementId: "G-C53P6LVDXM"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tham chiếu đến các node trong database
+            const wishesRef = database.ref('wishes');
+            const rsvpsRef = database.ref('rsvps');
+
+            // Hiển thị lời chúc
+            wishesRef.on('value', (snapshot) => {
+                const wishes = [];
+                snapshot.forEach((childSnapshot) => {
+                    wishes.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+
+                // Sắp xếp theo thời gian (mới nhất đầu tiên)
+                wishes.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Cập nhật số lượng
+                document.getElementById('wish-count').textContent = wishes.length;
+
+                // Hiển thị vào bảng
+                const tbody = document.getElementById('wishes-body');
+                tbody.innerHTML = '';
+                
+                wishes.forEach((wish, index) => {
+                    const row = document.createElement('tr');
+                    
+                    // Format thời gian
+                    const date = new Date(wish.timestamp);
+                    const timeString = date.toLocaleString('vi-VN');
+                    
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td class="wish-message">${wish.message || 'Không có nội dung'}</td>
+                        <td>${timeString}</td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+            });
+
+            // Hiển thị xác nhận tham dự
+            rsvpsRef.on('value', (snapshot) => {
+                const rsvps = [];
+                snapshot.forEach((childSnapshot) => {
+                    rsvps.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+
+                // Sắp xếp theo thời gian (mới nhất đầu tiên)
+                rsvps.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Cập nhật số lượng
+                document.getElementById('rsvp-count').textContent = rsvps.length;
+
+                // Hiển thị vào bảng
+                const tbody = document.getElementById('rsvps-body');
+                tbody.innerHTML = '';
+                
+                rsvps.forEach((rsvp, index) => {
+                    const row = document.createElement('tr');
+                    
+                    // Format thời gian
+                    const date = new Date(rsvp.timestamp);
+                    const timeString = date.toLocaleString('vi-VN');
+                    
+                    // Hiển thị sự kiện
+                    let eventText = '';
+                    switch(rsvp.event) {
+                        case 'both':
+                            eventText = '<span class="badge bg-success">Cả hai</span>';
+                            break;
+                        case 'wedding':
+                            eventText = '<span class="badge bg-primary">Lễ thành hôn</span>';
+                            break;
+                        case 'reception':
+                            eventText = '<span class="badge bg-warning text-dark">Lễ đón dâu</span>';
+                            break;
+                        default:
+                            eventText = '<span class="badge bg-secondary">Không rõ</span>';
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${rsvp.name || 'Không tên'}</td>
+                        <td>${rsvp.phone || 'Không có'}</td>
+                        <td>${rsvp.guests || '1'} người</td>
+                        <td>${eventText}</td>
+                        <td>${timeString}</td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
