@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Mở modal RSVP
+  // Open RSVP modal
   document.getElementById("rsvpBtn").addEventListener("click", function () {
     document.getElementById("rsvpModal").style.display = "block";
   });
 
-  // Mở modal gift
+  // Open gift modal
   document.getElementById("giftBtn").addEventListener("click", function () {
     document.getElementById("giftModal").style.display = "block";
   });
 
-  // Đóng modal khi bấm nút X
+  // Close modal when clicking the 'X' button
   document.querySelectorAll(".close-btn").forEach(btn => {
     btn.addEventListener("click", function () {
       this.closest(".modal").style.display = "none";
     });
   });
 
-  // Đóng modal khi bấm ra ngoài
+  // Close modal when clicking outside the modal
   window.addEventListener("click", function (e) {
     document.querySelectorAll(".modal").forEach(modal => {
       if (e.target === modal) {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Gửi form xác nhận RSVP
+  // Submit RSVP form
   document.querySelector(".rsvp-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event
     };
 
+    // Send data to Google Apps Script using fetch
     fetch("https://script.google.com/macros/s/AKfycbyotQWk6lYng_1Nj6eMedxeUO5xDIIFj2O0OI1wmheAHJtlo41Dt0QEH17263TBCxI7/exec", {
       method: "POST",
       headers: {
@@ -53,19 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(data)
     })
-      .then(res => res.json())
-      .then(response => {
-        if (response.status === "success") {
-          alert("Cảm ơn bạn đã xác nhận tham dự!");
-          document.querySelector(".rsvp-form").reset();
-          document.getElementById("rsvpModal").style.display = "none";
-        } else {
-          alert("Gửi không thành công. Vui lòng thử lại sau.");
-        }
-      })
-      .catch(error => {
-        console.error("Lỗi:", error);
-        alert("Đã xảy ra lỗi khi gửi xác nhận.");
-      });
+    .then(res => res.json())
+    .then(response => {
+      if (response.status === "success") {
+        alert("Cảm ơn bạn đã xác nhận tham dự!");
+        document.querySelector(".rsvp-form").reset();
+        document.getElementById("rsvpModal").style.display = "none";
+      } else {
+        alert("Gửi không thành công. Vui lòng thử lại sau.");
+      }
+    })
+    .catch(error => {
+      console.error("Lỗi:", error);
+      alert("Đã xảy ra lỗi khi gửi xác nhận.");
+    });
   });
 });
