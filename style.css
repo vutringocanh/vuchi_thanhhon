@@ -595,65 +595,41 @@ body {
   100% { transform: translateY(0) rotate(0deg); }
 }
 
-
+/* Vị trí nổi cố định ở góc dưới bên phải */
 .floating-gift {
     position: fixed;
-    top: 50%;
-    right: 0%;
-    z-index: 999;
-    animation: bounce 2s infinite;
-    touch-action: none; /* Cho phép di chuyển bằng cảm ứng */
-    user-select: none; /* Ngăn chọn văn bản khi kéo */
-    cursor: grab;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-.floating-gift:active {
-    cursor: grabbing;
-}
-/* Floating Gift Button */
-.floating-gift {
-    position: fixed;
-    top: 50%;
-    right: 0%;
-    z-index: 999;
-    animation: bounce 2s infinite;
-    touch-action: none;
-    user-select: none;
-    cursor: grab;
-}
-
+/* Nút quà tặng không có viền, nền trong suốt */
 .gift-button {
-    background: none;
+    background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
     outline: none;
+    transition: transform 0.3s ease;
 }
 
-.gift-image {
-    width: 50px; /* Điều chỉnh kích thước theo ý muốn */
-    height: 50px;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-}
-
-.gift-image:hover {
+.gift-button:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
 }
 
-/* Animation bounce giữ nguyên */
+/* Hình ảnh quà tặng */
+.gift-image {
+    width: 60px;
+    height: 60px;
+    animation: bounce 2s infinite;
+}
+
+/* Hiệu ứng nhún lên xuống */
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-10px);}
-    60% {transform: translateY(-5px);}
-}
-
-/* Style khi đang di chuyển */
-.floating-gift:active {
-    cursor: grabbing;
-}
-
-.floating-gift:active .gift-image {
-    transform: scale(0.95);
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }

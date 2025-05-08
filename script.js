@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get modal elements
     const giftModal = document.getElementById('giftModal');
     const rsvpModal = document.getElementById('rsvpModal');
-    const giftBtn = document.getElementById('giftBtn');
+    const giftBtn = document.getElementById('floating-gift');
     const rsvpBtn = document.getElementById('rsvpBtn');
     const closeButtons = document.querySelectorAll('.close-btn');
     
@@ -340,5 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('mouseup', function() {
         isDragging = false;
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const giftImage = document.querySelector(".gift-image");
+    const modal = document.getElementById("giftModal");
+    const closeBtn = modal.querySelector(".close-btn");
+
+    giftImage.addEventListener("click", function () {
+        modal.style.display = "block";
+    });
+
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
     });
 });
