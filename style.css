@@ -600,7 +600,8 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 9999;
+    z-index: 9998;
+
 }
 
 /* Nút quà tặng không có viền, nền trong suốt */
@@ -611,6 +612,8 @@ body {
     cursor: pointer;
     outline: none;
     transition: transform 0.3s ease;
+    z-index: 9999;
+    
 }
 
 .gift-button:hover {
@@ -622,6 +625,7 @@ body {
     width: 60px;
     height: 60px;
     animation: bounce 2s infinite;
+
 }
 
 /* Hiệu ứng nhún lên xuống */
