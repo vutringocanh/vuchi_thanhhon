@@ -490,3 +490,32 @@ body {
         height: 300px;
     }
 }
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    text-align: center;
+    background-color: #fff5f7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    min-width: 70px;
+}
+
+.countdown-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e75480;
+    display: block;
+}
+
+.countdown-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+}
