@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Mời Đám Cưới Vũ Chi & Nguyễn Huy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="invitation-container">
+        <div class="flower-decoration top-left"></div>
+        <div class="flower-decoration top-right"></div>
+        
+        <header class="invitation-header">
+            <h1>TRÂN TRỌNG KÍNH MỜI</h1>
+            <div class="heart-divider">
+                <span>❤</span>
+                <span>❤</span>
+                <span>❤</span>
+            </div>
+        </header>
+        
+        <!-- Ảnh cô dâu chú rể -->
+        <div class="couple-photo">
+            <div class="photo-frame">
+                <img src="https://example.com/couple.jpg" alt="Vũ Chi & Nguyễn Huy">
+            </div>
+            <div class="couple-names-main">
+                <span class="bride-name">Vũ Chi</span>
+                <span class="and">&</span>
+                <span class="groom-name">Nguyễn Huy</span>
+            </div>
+        </div>
+        
+        <main class="invitation-content">
+            <p class="intro-text">Đến dự bữa tiệc thân mật chung vui cùng gia đình chúng tôi</p>
+            
+            <div class="event-details">
+                <div class="event-section">
+                    <h2>Lễ Thành Hôn</h2>
+                    <div class="time-location">
+                        <p><i class="far fa-clock"></i> 16:00, Chủ Nhật ngày 31/05/2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Nhà gái: Đội 3 - Thôn Triệu Lục Nam - Bắc Giang</p>
+                    </div>
+                </div>
+                
+                <div class="couple-names">
+                    <div class="bride">
+                        <h3>Nhà gái</h3>
+                        <p>Vũ Trí Công</p>
+                        <p class="name">Đoàn Thị Nghĩa</p>
+                    </div>
+                    
+                    <div class="heart"><span>❤</span></div>
+                    
+                    <div class="groom">
+                        <h3>Nhà trai</h3>
+                        <p>Vũ Trí Lịch</p>
+                        <p class="name">Nguyễn Xuy</p>
+                    </div>
+                </div>
+                
+                <div class="event-section">
+                    <h2>Lễ Đón Dâu</h2>
+                    <div class="time-location">
+                        <p><i class="far fa-clock"></i> 10:30, Thứ Hai ngày 01/06/2025</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Nhà trai: TDP Chăn Cứ - TT. Đồi Ngô - Lục Nam - Bắc Giang</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rsvp-section">
+                <p class="closing-text">Rất hân hạnh được đón tiếp</p>
+                <button id="rsvpBtn" class="rsvp-button">Xác nhận tham dự</button>
+            </div>
+        </main>
+        
+        <div class="map-container">
+            <h3>Địa điểm tổ chức</h3>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d437.18842966229477!2d106.35775521467293!3d21.1786355580499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d21.178553023417862!2d106.35806970366794!5e1!3m2!1svi!2s!4v1746675173941!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        
+        <div class="gift-section">
+            <button id="giftBtn" class="gift-button">
+                <i class="fas fa-gift"></i> Gửi lời chúc mừng
+            </button>
+        </div>
+        
+        <div class="flower-decoration bottom-left"></div>
+        <div class="flower-decoration bottom-right"></div>
+    </div>
+    
+    <!-- Gift Modal -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Gửi lời chúc mừng</h2>
+            <div class="qr-code">
+                <div class="qr-placeholder"></div>
+                <p>Quét mã QR để chuyển khoản mừng cưới</p>
+            </div>
+            <div class="bank-info">
+                <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                <p><strong>Số tài khoản:</strong> 1234567890</p>
+                <p><strong>Chủ tài khoản:</strong> Vũ Trí Công</p>
+            </div>
+            <form class="wish-form">
+                <textarea placeholder="Gửi lời chúc mừng đến Vũ Chi & Nguyễn Huy..." rows="4"></textarea>
+                <button type="submit">Gửi lời chúc</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Xác nhận tham dự</h2>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Họ và tên</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="guests">Số lượng người tham dự</label>
+                    <select id="guests">
+                        <option value="1">1 người</option>
+                        <option value="2">2 người</option>
+                        <option value="3">3 người</option>
+                        <option value="4">4 người</option>
+                        <option value="5">5+ người</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="event">Sự kiện sẽ tham dự</label>
+                    <select id="event">
+                        <option value="both">Cả lễ thành hôn và đón dâu</option>
+                        <option value="wedding">Chỉ lễ thành hôn</option>
+                        <option value="reception">Chỉ lễ đón dâu</option>
+                    </select>
+                </div>
+                <button type="submit">Gửi xác nhận</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

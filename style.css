@@ -1,0 +1,492 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fff9fb;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Invitation Container */
+.invitation-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+/* Header */
+.invitation-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.invitation-header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #e75480;
+    font-size: 24px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.heart-divider {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.heart-divider span {
+    color: #e75480;
+    margin: 0 5px;
+    font-size: 14px;
+    animation: pulse 2s infinite;
+}
+
+.heart-divider span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.heart-divider span:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Content */
+.invitation-content {
+    text-align: center;
+    padding: 0 15px;
+}
+
+.intro-text {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+/* Event Details */
+.event-details {
+    margin-bottom: 30px;
+}
+
+.event-section {
+    margin-bottom: 25px;
+}
+
+.event-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #e75480;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.time-location {
+    background-color: #fff5f7;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.time-location p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.time-location i {
+    margin-right: 8px;
+    color: #e75480;
+}
+
+/* Couple Names */
+.couple-names {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.bride, .groom {
+    flex: 1;
+}
+
+.bride h3, .groom h3 {
+    color: #e75480;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.bride p, .groom p {
+    font-size: 14px;
+    margin: 3px 0;
+}
+
+.bride .name, .groom .name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.heart {
+    font-size: 24px;
+    color: #e75480;
+    animation: pulse 2s infinite;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    margin: 30px 0;
+}
+
+.closing-text {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.rsvp-button {
+    background-color: #e75480;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(231, 84, 128, 0.3);
+}
+
+.rsvp-button:hover {
+    background-color: #d14a72;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(231, 84, 128, 0.4);
+}
+
+/* Map Section */
+.map-container {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.map-container h3 {
+    color: #e75480;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.map-placeholder {
+    height: 200px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.map-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gift Section */
+.gift-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.gift-button {
+    background-color: #ffb6c1;
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+}
+
+.gift-button i {
+    margin-right: 8px;
+}
+
+.gift-button:hover {
+    background-color: #ffa7b5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 182, 193, 0.4);
+}
+
+/* Flower Decorations */
+.flower-decoration {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+    background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+    transform: rotate(-15deg);
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+    background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+    transform: rotate(15deg);
+}
+
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+    transform: rotate(15deg);
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    background-image: url('https://cdn.pixabay.com/photo/2017/01/10/03/06/rose-1968358_960_720.png');
+    transform: rotate(-15deg);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #e75480;
+}
+
+.modal h2 {
+    color: #e75480;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.qr-code {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qr-placeholder {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.bank-info {
+    background-color: #fff5f7;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.bank-info p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.wish-form textarea, .rsvp-form input, .rsvp-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+}
+
+.wish-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.wish-form button, .rsvp-form button {
+    background-color: #e75480;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.wish-form button:hover, .rsvp-form button:hover {
+    background-color: #d14a72;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .couple-names {
+        flex-direction: column;
+    }
+    
+    .heart {
+        margin: 15px 0;
+        transform: rotate(90deg);
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+    }
+    
+    .flower-decoration {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Thêm các style mới vào file CSS */
+
+/* Couple Photo */
+.couple-photo {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.photo-frame {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Màu nền tạm thời */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.couple-names-main {
+    margin-top: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #e75480;
+}
+
+.bride-name {
+    font-weight: bold;
+}
+
+.groom-name {
+    font-weight: bold;
+}
+
+.and {
+    margin: 0 10px;
+    color: #666;
+}
+
+/* Map Wrapper */
+.map-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .couple-names-main {
+        font-size: 20px;
+    }
+    
+    .photo-frame {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .map-wrapper iframe {
+        height: 300px;
+    }
+}
