@@ -514,7 +514,8 @@ body {
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .couple-names-main {
-        font-size: 25px;
+        font-size: 21px;
+        text-align: center;
     }
     
     .photo-frame {
