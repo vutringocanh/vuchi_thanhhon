@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const giftModal = document.getElementById('giftModal');
     const rsvpModal = document.getElementById('rsvpModal');
     const giftBtn = document.getElementById('Anh');
-    
+
     const rsvpBtn = document.getElementById('rsvpBtn');
     const closeButtons = document.querySelectorAll('.close-btn');
     
@@ -343,3 +343,18 @@ document.addEventListener('DOMContentLoaded', function() {
         isDragging = false;
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll(".photo-frame img");
+    let currentIndex = 0;
+
+    // Gán lớp "active" cho ảnh đầu tiên
+    images[currentIndex].classList.add("active");
+
+    setInterval(() => {
+      images[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add("active");
+    }, 3000); // Đổi ảnh mỗi 3 giây
+  });

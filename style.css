@@ -129,6 +129,7 @@ body {
 .bride p, .groom p {
     font-size: 14px;
     margin: 3px 0;
+    font-size: x-large;
 }
 
 .bride .name, .groom .name {
@@ -428,23 +429,58 @@ body {
 }
 
 .photo-frame {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border: 5px solid #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #f0f0f0; /* Màu nền tạm thời */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* width: 300px; */
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+/* css cho  <div class="slide"><img src="anhcuoi1.jpg" alt="Ảnh Cô Dâu Chú Rể"></div>
+<div class="slide"><img src="anhcuoi2.jpg" alt="Ảnh Cô Dâu Chú Rể"></div>
+<div class="slide"><img src="anhcuoi3.jpg" alt="Ảnh Cô Dâu Chú Rể"></div>
+<div class="slide"><img src="anhcuoi4.jpg" alt="Ảnh Cô Dâu Chú Rể"></div>
+<div class="slide"><img src="anhcuoi5.jpg" alt="Ảnh Cô Dâu Chú Rể"></div> */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.dots {
+  position: absolute;
+  bottom: 1px;
+  width: 100%;
+  text-align: center;
+}
+
+.dots span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 5px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots span.active {
+  background: #333;
 }
 
 .couple-names-main {
@@ -482,8 +518,8 @@ body {
     }
     
     .photo-frame {
-        width: 150px;
-        height: 150px;
+        /* width: 150px; */
+        /* height: 150px; */
     }
     
     .map-wrapper iframe {
@@ -637,3 +673,49 @@ body {
         transform: translateY(-10px);
     }
 }
+
+/* css cho <div class="qr-placeholder"><img src="qrcuachi.jfif" alt="Vũ Chi & Nguyễn Huy"></div> */
+.qr-placeholder {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+.qr-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* css giật giật bàn tay 👉 cho <p class="map-link"><a href="https://maps.app.goo.gl/ZH9vqWYGyqDYULvv7" target="_blank">👉 Xem trên Google Maps</a></p> */
+.map-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #e75480;
+    text-decoration: none;
+}
+.map-link a {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+    font-style: italic;
+}
+.map-link a:hover {
+    transform: translateY(-2px);
+}
+.map-link i {
+    margin-right: 5px;
+    animation: shake 0.5s infinite alternate;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+}
+
+
