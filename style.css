@@ -488,6 +488,9 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 24px;
     color: #e75480;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bride-name {
@@ -635,10 +638,9 @@ body {
 /* Vị trí nổi cố định ở góc dưới bên phải */
 .floating-gift {
     position: fixed;
-    bottom: 20px;
+    bottom: 50%;
     right: 20px;
     z-index: 9998;
-
 }
 
 /* Nút quà tặng không có viền, nền trong suốt */
