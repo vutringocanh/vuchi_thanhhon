@@ -660,22 +660,37 @@ body {
 }
 
 /* Hình ảnh quà tặng */
-.gift-image {
+/* .gift-image {
     width: 60px;
     height: 60px;
     animation: bounce 2s infinite;
 
-}
+} */
 
 /* Hiệu ứng nhún lên xuống */
-@keyframes bounce {
+/* @keyframes bounce {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
         transform: translateY(-10px);
     }
+} */
+.gift-image {
+    width: 60px;
+    height: 60px;
+    animation: swing 1s ease-in-out infinite;
+    transform-origin: top center; /* Tâm xoay ở đỉnh, giống chuông treo */
 }
+
+@keyframes swing {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(10deg); }
+    50%  { transform: rotate(-10deg); }
+    75%  { transform: rotate(8deg); }
+    100% { transform: rotate(0deg); }
+}
+
 
 /* css cho <div class="qr-placeholder"><img src="qrcuachi.jfif" alt="Vũ Chi & Nguyễn Huy"></div> */
 .qr-placeholder {
