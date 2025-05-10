@@ -11,7 +11,42 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
+<style>
+    
+    .record {
+      margin: 40px auto;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #444 30%, #222 60%, black 100%);
+      border: 8px solid #333;
+      animation: spin 5s linear infinite;
+      position: relative;
+    }
 
+    .record::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background: #d9d9d9;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .note {
+      color: #555;
+      font-size: 14px;
+    }
+</style>
 <body>
     <!-- Floating Hearts -->
 <div class="floating-gift" id="Anh">
@@ -28,7 +63,10 @@
         <div class="flower-decoration top-left"></div>
         <div class="flower-decoration top-right"></div>
         
-
+        <audio id="myAudio" autoplay loop>
+    <source src="leduong.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ audio.
+  </audio>
         <header class="invitation-header">
             <h1>TRÂN TRỌNG KÍNH MỜI</h1>
             <div class="heart-divider">
@@ -209,6 +247,14 @@
     currentIndex = (currentIndex + 1) % slides.length;
     updateSlide();
   }, 3000);
+
+  // Đảm bảo nhạc phát tự động kể cả khi trình duyệt yêu cầu tương tác
+    const audio = document.getElementById('myAudio');
+    document.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      }
+    });
 </script>
 
 </body>
