@@ -495,10 +495,14 @@ body {
 
 .bride-name {
     font-weight: bold;
+    color: #ff6b9c;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .groom-name {
     font-weight: bold;
+    color: #2d5da8;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .and {
